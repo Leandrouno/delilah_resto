@@ -7,7 +7,7 @@ Tercer Proyecto de la carrera Desarrollo Web Full Stack en Acamica.
 
 ⚙️ Procedimiento :
 
-1 - Instalación 🔩
+## 1 - Instalación 🔩
 
 Clonar proyecto desde la consola :
 
