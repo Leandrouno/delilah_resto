@@ -46,7 +46,7 @@ https://github.com/Leandrouno/delilah_resto/blob/main/Delilah.postman_collection
 ## 8 ENDPOINT
 
 localhost:3000/v1
-|--------|--------------------|-----------------------------|--------------------------------------------------------|
+
 | Metodo |       Enpoint      |           Body	        	|                  Descripcion                           |
 |--------|--------------------|-----------------------------|--------------------------------------------------------|
 |   GET  | /login             |{usuario,contraseña}		    | Devuelve el Token del Usuario                          |
