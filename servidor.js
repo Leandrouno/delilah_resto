@@ -8,6 +8,7 @@ const rateLimit = require("express-rate-limit");
 
 const usuariosRutas = require('./rutas/usuarios.rutas.js');
 const productosRutas = require('./rutas/productos.rutas.js');
+const pedidosRutas = require('./rutas/pedidos.rutas.js');
 
 const limiteLogin = rateLimit({
     windowMs: 6 * 60 * 10000,
@@ -20,6 +21,7 @@ app.use("/v1/ingreso/", limiteLogin);
 
 usuariosRutas(app);
 productosRutas(app);
+pedidosRutas(app);
 
 app.listen(puerto, () => {
     console.clear();

@@ -3,22 +3,6 @@ const { validarDatos, validarExistencia } = require('../middlewares/usuarios.mid
 
 module.exports = (app) => {
 
-    app.post("/v1/usuarios/", validarDatos, validarExistencia, async (req, res) => {
-
-        console.log("peticion POST a : /v1/usuarios/ ");
-
-        const crearUsuario = await usuariosServicios.crearUsuario(req.body);
-
-        if (crearUsuario.length > 0) {
-            res.status(201).json({
-                mensaje: `Usuario ${req.body.usuario} creado correctamente ! `
-            });
-        }
-
-        else { res.status(400).json({ mensaje: "Error al Crear Usuario" }); }
-
-    });
-
     app.get("/v1/usuarios/", async (req, res) => {
 
         console.log("peticion GET a : /v1/usuarios/ ");
@@ -33,6 +17,22 @@ module.exports = (app) => {
             else { res.status(200).json("El usuario no existe"); }
 
         } catch (error) { res.status(500).json({ Error: error.message }); }
+
+    });
+
+    app.post("/v1/usuarios/", validarDatos, validarExistencia, async (req, res) => {
+
+        console.log("peticion POST a : /v1/usuarios/ ");
+
+        const crearUsuario = await usuariosServicios.crearUsuario(req.body);
+
+        if (crearUsuario.length > 0) {
+            res.status(201).json({
+                mensaje: `Usuario ${req.body.usuario} creado correctamente ! `
+            });
+        }
+
+        else { res.status(400).json({ mensaje: "Error al Crear Usuario" }); }
 
     });
 
@@ -65,7 +65,7 @@ module.exports = (app) => {
 
     app.delete("/v1/usuarios/", validarDatos, async (req, res) => {
 
-        console.log("peticion PUT a : /v1/usuarios/ ");
+        console.log("peticion DELETE a : /v1/usuarios/ ");
 
         console.log("Validando Si existe el Usuario");
 

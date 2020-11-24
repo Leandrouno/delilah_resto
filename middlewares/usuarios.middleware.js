@@ -42,9 +42,12 @@ function esAdmin(req, res, next) {
 
     console.log("Validando si el usuario es Admin");
 
-    const token = req.body.token;
-
-    if (token) {
+    if (!token) {
+        
+        res.status(401).json({ Error: "Token Invalido" });
+        
+        
+    } else {
 
         const verificar = jwt.verify(token, firma)
         console.log(verificar)
@@ -53,8 +56,29 @@ function esAdmin(req, res, next) {
         else { res.status(401).json({ Error: "Token Invalido" }); }
 
     }
-    else { res.status(401).json({ Error: "Token Invalido" }); }
+
 
 }
 
-module.exports = { validarDatos, validarExistencia, esAdmin };
+function enviaToken(req, res, next) {
+
+
+    console.log("Revisando Token");
+
+    const { token } = req.body;
+
+    if (!token) {
+        
+        res.status(401).json({ Error: "Token Invalido" });        
+        
+    } else {
+        
+       next();
+
+    }
+   
+
+
+}
+
+module.exports = { validarDatos, validarExistencia, esAdmin , enviaToken };

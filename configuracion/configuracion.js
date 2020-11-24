@@ -27,4 +27,8 @@ sequelize.authenticate().then(() => {
 const jwt = require('jsonwebtoken');
 const firma = "LaPalabraMasica2020";
 
-module.exports = { sequelize, jwt, firma };
+const m = new Date();
+const ahora = m.getUTCFullYear() +"/"+ (m.getUTCMonth()+1) +"/"+ m.getUTCDate() + " " + m.getUTCHours() + ":" + m.getUTCMinutes() + ":" + m.getUTCSeconds();
+
+
+module.exports = { sequelize, jwt, firma, ahora };
