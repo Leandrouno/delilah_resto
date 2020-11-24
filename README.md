@@ -13,6 +13,7 @@ npm install
 
 3 - Crear base de datos
 Importar el Archivo delilah.sql desde el panel de Administracion
+Recuerde Editar el archivo configuracion/configuracion.js con los datos de su entorno.
 
 4 - Iniciar el servidor
 
