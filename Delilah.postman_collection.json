@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "a38c503d-0294-4f10-8d92-6fe03972bdbf",
+		"name": "Delilah",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post Usuarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\" : \"Selso\",\r\n\"usuario\": \"Selsito\",\r\n\"apellido\": \"Borno\",\r\n\"email\": \"elfa@dfwk.com.\",\r\n\"domicilio\" :\"Bartran 320\",\r\n\"telefono\" :\"511555256\",\r\n\"contrasena\":\"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Productos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\" : \"Selso\",\r\n\"usuario\": \"Selsito\",\r\n\"apellido\": \"Borno\",\r\n\"email\": \"elfa@dfwk.com.\",\r\n\"domicilio\" :\"Bartran 320\",\r\n\"telefono\" :\"511555256\",\r\n\"contrasena\":\"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/productos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Traer Usuarios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Ingreso",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"usuario\": \"Leandrouno\",\r\n\"contrasena\":\"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/ingreso",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"ingreso"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Traer Usuario",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"nombre\" : \"Leandro\",\r\n\"usuario\": \"Leandrouno\",\r\n\"apellido\": \"Mugnolo\",\r\n\"email\": \"elfa@dfwk.com.\",\r\n\"domicilio\" :\"Bartran 320\",\r\n\"telefono\" :\"511555256\",\r\n\"contrasena\":\"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/usuarios",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Traer Pedidos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"usuario\": \"Julio\",\r\n    \"id_usuario\" : 2,\r\n               \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiTGVhbmRyb3VubyIsImFkbWluIjoxLCJpZCI6MSwiaWF0IjoxNjA2MTY0MzUwfQ.dYAmtaTDFXR1brPE51W9cJ2zB39xkBXrzeHkcQZZyQI\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/pedidos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear Pedido",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_usuario\": 3,\r\n    \"total\": 5000,\r\n    \"productos\" : [\r\n    {\r\n        \"id_producto\": 1,\r\n        \"cantidad\":2,\r\n        \"nombre_producto\": \"Empanada Carne\",\r\n        \"precio\": 60\r\n    },\r\n     {\r\n        \"id_producto\": 6,\r\n        \"cantidad\":4,\r\n        \"nombre_producto\": \"Empanada de Pollo\",\r\n        \"precio\": 61     \r\n     }  \r\n        ],\r\n     \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiTGVhbmRyb3VubyIsImFkbWluIjoxLCJpZCI6MSwiaWF0IjoxNjA2MTY2MjA3fQ.ahvlRDRHGFXskDH3lNoV_bLWBD_KbyRRQCiPdFod9Xo\"\r\n\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/pedidos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Pedido",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_pedido\": 21,\r\n    \"estado\": \"entregado\",\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiTGVhbmRyb3VubyIsImFkbWluIjoxLCJpZCI6MSwiaWF0IjoxNjA2MTY2MjA3fQ.ahvlRDRHGFXskDH3lNoV_bLWBD_KbyRRQCiPdFod9Xo\"\r\n\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/pedidos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Eliminar Pedido",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_pedido\": 20,\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiTGVhbmRyb3VubyIsImFkbWluIjoxLCJpZCI6MSwiaWF0IjoxNjA2MTY2MjA3fQ.ahvlRDRHGFXskDH3lNoV_bLWBD_KbyRRQCiPdFod9Xo\"\r\n\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/pedidos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"pedidos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Productos por nombre",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 1,\r\n        \"nombre\": \"Empan\",\r\n        \"precio\": 60,\r\n        \"imagen\": \"empanada_carne.png\",\r\n        \"descripcion\": \"Riquisima empanada de Carne Suave acompañanda con una Salsa de Mondongo\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/productos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Productos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"id\": 5,\r\n        \"nombre\": \"Ensalada de Tomate y queso\",\r\n        \"precio\": 112,\r\n        \"imagen\": \"ensalada.png\",\r\n        \"descripcion\": \"ensalada de Tomate con queso \",\r\n          \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3VhcmlvIjoiTGVhbmRyb3VubyIsImFkbWluIjoxLCJpZCI6MSwiaWF0IjoxNjA2MTUwODM1fQ.uk6l2SAPV-xlOiov79fTQW6e6tw-9u1MEiFZUQxEx00\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3000/v1/productos",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
