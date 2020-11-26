@@ -36,7 +36,7 @@ function validarDatos(req, res, next) {
 
     if (!total || !id_usuario || !productos) {
 
-        res.status(404).json({
+        res.status(400).json({
             error: `Datos Incompletos !`
         });
 
@@ -81,7 +81,7 @@ async function editarPedido(req, res, next) {
 
     if (!estado || !id_pedido) {
 
-        res.status(404).json({ error: `Datos Incompletos !` });
+        res.status(400).json({ error: `Datos Incompletos !` });
 
     } else {
 
@@ -107,7 +107,7 @@ async function eliminarPedido(req, res, next) {
 
     if (!id_pedido) {
 
-        res.status(404).json({ error: `Datos Incompletos !` });
+        res.status(400).json({ error: `Datos Incompletos !` });
 
     } else {
 

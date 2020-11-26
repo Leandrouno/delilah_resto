@@ -1,3 +1,81 @@
+const usuariosServicios = require('../servicios/usuarios.servicios.js');
+
+async function muestraUsuarios(req, res, next) {
+
+    try {
+
+        const consultaUsuario = await usuariosServicios.buscarUsuario(req.body);
+        const usuario = consultaUsuario.map(({ id, usuario, nombre, apellido }) => { return { id, usuario, nombre, apellido } });
+
+        if (consultaUsuario.length > 0) { res.status(200).json(usuario); }
+
+        else { res.status(404).json("El usuario no existe"); }
+
+    } catch (error) { res.status(500).json({ Error: error.message }); }
+
+
+}
+
+async function crearUsuario(req, res, next) {
+
+    const crearUsuario = await usuariosServicios.crearUsuario(req.body);
+
+    if (crearUsuario.length > 0) {
+        res.status(201).json({
+            mensaje: `Usuario ${req.body.usuario} creado correctamente ! `
+        });
+    }
+
+    else { res.status(400).json({ mensaje: "Error al Crear Usuario" }); }
+
+
+}
+
+async function editarUsuario(req, res, next) {
+
+    console.log("Validando Si existe el Usuario");
+
+    const consultaUsuario = await usuariosServicios.buscarUsuario(req.body);
+
+    if (consultaUsuario.length > 0) {
+
+        const editarUsuario = await usuariosServicios.editarUsuario(req.body);
+
+        if (editarUsuario.length > 0) {
+            res.status(201).json({
+                mensaje: `Usuario ${req.body.usuario} editado correctamente ! `
+            });
+        }
+
+    }
+
+    else { res.status(400).json({ mensaje: "Error al Editar Usuario" }); }
+
+}
+
+async function eliminarUsuario(req, res, next) {
+
+
+    console.log("Validando Si existe el Usuario");
+
+    const consultaUsuario = await usuariosServicios.buscarUsuario(req.body);
+
+    if (consultaUsuario.length > 0) {
+
+        const eliminarUsuario = await usuariosServicios.eliminarUsuario(req.body);
+
+        res.status(201).json({
+            mensaje: `Usuario ${req.body.usuario} eliminado correctamente ! `
+        });
+
+
+    }
+
+    else { res.status(400).json({ mensaje: "Error al Eliminar Usuario" }); }
+
+
+}
+
 function validarDatos(req, res, next) {
 
     console.log("Validando Datos Completos del Usuario");
@@ -6,7 +84,7 @@ function validarDatos(req, res, next) {
 
     if (!usuario || !nombre || !apellido || !email || !contrasena || !telefono || !domicilio) {
 
-        res.status(404).json({
+        res.status(400).json({
             error: `Datos Incompletos !`
         });
 
@@ -29,7 +107,7 @@ async function validarExistencia(req, res, next) {
 
     console.log("Usuario encontrado : ", consultaUsuario);
 
-    if (consultaUsuario.length > 0) { res.status(200).json(`El usuario ${req.body.usuario} ya existe en la base de datos`); }
+    if (consultaUsuario.length > 0) { res.status(409).json(`El usuario ${req.body.usuario} ya existe en la base de datos`); }
 
     else { next(); }
 
@@ -42,15 +120,16 @@ function esAdmin(req, res, next) {
 
     console.log("Validando si el usuario es Admin");
 
+    const token = req.headers.authorization;
+
     if (!token) {
-        
+
         res.status(401).json({ Error: "Token Invalido" });
-        
-        
+
+
     } else {
 
         const verificar = jwt.verify(token, firma)
-        console.log(verificar)
 
         if (verificar.admin == 1) { next(); }
         else { res.status(401).json({ Error: "Token Invalido" }); }
@@ -62,23 +141,24 @@ function esAdmin(req, res, next) {
 
 function enviaToken(req, res, next) {
 
-
     console.log("Revisando Token");
 
-    const { token } = req.body;
+    const token = req.headers.authorization;
 
     if (!token) {
-        
-        res.status(401).json({ Error: "Token Invalido" });        
-        
+
+        res.status(401).json({ Error: "Token Invalido" });
+
     } else {
-        
-       next();
+
+        next();
 
     }
-   
-
 
 }
 
-module.exports = { validarDatos, validarExistencia, esAdmin , enviaToken };
+module.exports = {
+    validarDatos, validarExistencia, esAdmin,
+    enviaToken, muestraUsuarios, crearUsuario,
+    editarUsuario, eliminarUsuario
+};

@@ -37,11 +37,6 @@ module.exports.buscarPedidoPorUsuario = async (objPedido) => {
 
 }
 
-module.exports.buscarPedidoPorId = async (objPedido) => {
-
-
-}
-
 module.exports.crearPedido = async (objPedido) => {
    
     const fecha_pedido = ahora;
