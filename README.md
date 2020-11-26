@@ -47,35 +47,35 @@ https://github.com/Leandrouno/delilah_resto/blob/main/Delilah.postman_collection
 
 localhost:3000/v1
 
-| Metodo |       Enpoint      |           Body	        	|                  Descripcion                           |
-|--------|--------------------|-----------------------------|--------------------------------------------------------|
-|   GET  | /login             |{usuario,contraseña}		    | Devuelve el Token del Usuario                          |
-|   GET  | /usuarios          |{token}						| Devuelve Informacion de todos los usuarios             |
-|   GET  | /usuarios          |{usuario ,token}				| Devuelve informacion de un Usuario 					 |
-|  POST  | /usuarios          |{ usuario, nombre, apellido, | Crea un Usuario                                        |
-|		 |					  |	email, contrasena, telefono,|                                                        |
-|		 |					  | domicilio  }          		|					                                     |
-|   PUT  | /usuarios          |{ usuario, nombre, apellido, | Modifica un Usuario                   (Solo Admin)     |
-|        | 				      |	email, contrasena, telefono,|                                                        |
-|		 |					  | domicilio ,token }    		|                                                        |
-| DELETE | /usuarios          |{usuario ,token}	        	| Elimina un usuario                    (Solo Admin)     |
-|--------|--------------------|-----------------------------|--------------------------------------------------------|
-|   GET  | /productos         |                      	    | Devuelve todos los productos                           |
-|   GET  | /productos         | {nombre}               	    | Devuelve los productos que contengan la palabra buscada|
-|  POST  | /productos         |{ nombre, precio, imagen,    | Crea un Producto                      (Solo Admin)     |
-|		 |					  |	descripcion ,token }        |                                                        |
-|  PUT   | /productos         |{ id, nombre, precio, imagen,| Modifica un Producto                   (Solo Admin)    |
-|		 |					  |	descripcion ,token }        |                                                        |
-| DELETE | /productos         |{id ,token}	        	    | Elimina un producto                   (Solo Admin)     |
-|--------|--------------------|-----------------------------|--------------------------------------------------------|
-|  GET   | /pedidos           |{token}						| Muestra pedidos (si es Admin muestra todos )		     |
-|  POST  | /pedidos      	  |{total, id_usuario,          | Crea un Pedido                                         |
-|		 |					  | productos[                  |                                                        |
-|		 |					  |{id_producto,cantidad,       |                                                        |
-|		 |					  | nombre_producto,precio}]    |                                                        |
-|		 |				 	  |,token }        				|                                                        |
-|  PUT   | /pedidos			  |{ estado , id_pedido, token }| Permite editar el Estado del Pedido   (Solo Admin)     |
-| DELETE | /pedidos           |{id ,token}	        	    | Elimina un pedido                     (Solo Admin)     |
-|--------|--------------------|-----------------------------|--------------------------------------------------------|
+| Metodo |       Enpoint      |           Body	        	|           Header	        	|                  Descripcion                           |
+|--------|--------------------|-----------------------------|-------------------------------|--------------------------------------------------------|
+|   GET  | /login             |{usuario,contraseña}		    |                   		    | Devuelve el Token del Usuario                          |
+|   GET  | /usuarios          |                   		    |           {token }    		| Devuelve Informacion de todos los usuarios             |
+|   GET  | /usuarios          |{usuario}    				|           {token }    		| Devuelve informacion de un Usuario 					 |
+|  POST  | /usuarios          |{ usuario, nombre, apellido, |                   		    | Crea un Usuario                                        |
+|		 |					  |	email, contrasena, telefono,|                   		    |                                                        |
+|		 |					  | domicilio  }          		|                   		    |					                                     |
+|   PUT  | /usuarios          |{ usuario, nombre, apellido, |           {token }    		| Modifica un Usuario                   (Solo Admin)     |
+|        | 				      |	email, contrasena, telefono,|                   		    |                                                        |
+|		 |					  | domicilio}          		|                   		    |                                                        |
+| DELETE | /usuarios          |{usuario}    				|           {token }    		| Elimina un usuario                    (Solo Admin)     |
+|--------|--------------------|-----------------------------|-------------------------------|--------------------------------------------------------|
+|   GET  | /productos         |                      	    |                        	    | Devuelve todos los productos                           |
+|   GET  | /productos         | {nombre}               	    |                   		    | Devuelve los productos que contengan la palabra buscada|
+|  POST  | /productos         |{ nombre, precio, imagen,    |           {token }    		| Crea un Producto                      (Solo Admin)     |
+|		 |					  |	descripcion}                |                   		    |                                                        |
+|  PUT   | /productos         |{ id, nombre, precio, imagen,|           {token }    		| Modifica un Producto                   (Solo Admin)    |
+|		 |					  |	descripcion}                |                   		    |                                                        |
+| DELETE | /productos         |{id}	                  	    |           {token }    		| Elimina un producto                   (Solo Admin)     |
+|--------|--------------------|-----------------------------|-------------------------------|--------------------------------------------------------|
+|  GET   | /pedidos           |                      	    |           {token }    		| Muestra pedidos (si es Admin muestra todos )		     |
+|  POST  | /pedidos      	  |{total, id_usuario,          |           {token }    		| Crea un Pedido                                         |
+|		 |					  | productos[                  |                   		    |                                                        |
+|		 |					  |{id_producto,cantidad,       |                   		    |                                                        |
+|		 |					  | nombre_producto,precio}]}   |                   		    |                                                        |
+|		 |				 	  |             				|                   		    |                                                        |
+|  PUT   | /pedidos			  |{ estado , id_pedido }       |           {token }    		| Permite editar el Estado del Pedido   (Solo Admin)     |
+| DELETE | /pedidos           |{id ,token}	        	    |           {token }    		| Elimina un pedido                     (Solo Admin)     |
+|--------|--------------------|-----------------------------|-------------------------------|--------------------------------------------------------|
 
 
