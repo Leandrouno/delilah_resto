@@ -1,4 +1,4 @@
-const { sequelize, jwt, firma } = require("../configuracion/configuracion.js");
+const { sequelize } = require("../configuracion/configuracion.js");
 
 module.exports.buscarUsuario = async (objUsuario) => {
 

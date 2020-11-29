@@ -1,4 +1,5 @@
 const usuariosServicios = require('../servicios/usuarios.servicios.js');
+const { jwt, firma } = require("../configuracion/configuracion.js");
 
 async function muestraUsuarios(req, res, next) {
 
@@ -14,6 +15,41 @@ async function muestraUsuarios(req, res, next) {
     } catch (error) { res.status(500).json({ Error: error.message }); }
 
 
+}
+
+async function login (req, res, next) {
+
+    const { usuario, contrasena } = req.body;    
+    
+    if (!usuario || !contrasena) {
+
+        res.status(404).json({
+            error: `Datos Incompletos !`
+        });
+
+    } else{
+
+    const usuBus = await usuariosServicios.buscarUsuario(req.body);
+
+	if ( usuBus && usuario == usuBus[0].usuario && contrasena == usuBus[0].contrasena ) {
+
+        console.log("Enviando Token");
+       
+            const token = jwt.sign({
+                admin: usuBus[0].admin,
+                nombre: usuBus[0].nombre,
+                apellido: usuBus[0].apellido
+            },firma);
+    
+            res.status(200).json({
+                   mensaje: 'Autenticación correcta',
+                   token: token });
+
+	} else {
+		res.status(401).json({ error: "Usuario o Contrasena incorrecta" });
+	}
+
+    }
 }
 
 async function crearUsuario(req, res, next) {
@@ -160,5 +196,5 @@ function enviaToken(req, res, next) {
 module.exports = {
     validarDatos, validarExistencia, esAdmin,
     enviaToken, muestraUsuarios, crearUsuario,
-    editarUsuario, eliminarUsuario
+    editarUsuario, eliminarUsuario, login
 };

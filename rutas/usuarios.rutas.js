@@ -1,10 +1,10 @@
 const usuariosServicios = require('../servicios/usuarios.servicios.js');
 const { validarDatos, validarExistencia, esAdmin, muestraUsuarios,
-    crearUsuario, editarUsuario, eliminarUsuario } = require('../middlewares/usuarios.middleware.js');
+    crearUsuario, editarUsuario, eliminarUsuario, login, enviaToken} = require('../middlewares/usuarios.middleware.js');
 
 module.exports = (app) => {
 
-    app.get("/v1/usuarios/", muestraUsuarios, async (req, res) => {
+    app.get("/v1/usuarios/", enviaToken, muestraUsuarios, async (req, res) => {
 
         console.log("peticion GET a : /v1/usuarios/ ");
 
@@ -29,7 +29,7 @@ module.exports = (app) => {
 
     });
 
-    app.post("/v1/ingreso/", async (req, res) => {
+    app.post("/v1/ingreso/", login, async (req, res) => {
 
         console.log("Usuario Quiere Ingresar : /v1/ingreso/ ");
 
