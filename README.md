@@ -49,7 +49,7 @@ localhost:3000/v1
 
 | Metodo |       Enpoint      |           Body	        	|           Header	        	|                  Descripcion                           |
 |--------|--------------------|-----------------------------|-------------------------------|--------------------------------------------------------|
-|   GET  | /login             |{usuario,contraseña}		    |                   		    | Devuelve el Token del Usuario                          |
+|  POST  | /login             |{usuario,contraseña}		    |                   		    | Devuelve el Token del Usuario                          |
 |   GET  | /usuarios          |                   		    |           {token }    		| Devuelve Informacion de todos los usuarios             |
 |   GET  | /usuarios          |{usuario}    				|           {token }    		| Devuelve informacion de un Usuario 					 |
 |  POST  | /usuarios          |{ usuario, nombre, apellido, |                   		    | Crea un Usuario                                        |
