@@ -1,4 +1,3 @@
-const productosServicios = require('../servicios/productos.servicios.js');
 const { validarDatos, validarExistencia, validarDatosEditar,
      mostrarProductos, crearProducto ,editarProducto, eliminarProducto } = require('../middlewares/productos.middleware.js');
 const { esAdmin } = require('../middlewares/usuarios.middleware.js');

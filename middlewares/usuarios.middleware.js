@@ -14,7 +14,6 @@ async function muestraUsuarios(req, res, next) {
 
     } catch (error) { res.status(500).json({ Error: error.message }); }
 
-
 }
 
 async function login (req, res, next) {
@@ -31,11 +30,12 @@ async function login (req, res, next) {
 
     const usuBus = await usuariosServicios.buscarUsuario(req.body);
 
-	if ( usuBus && usuario == usuBus[0].usuario && contrasena == usuBus[0].contrasena ) {
+	if ( usuBus.length > 0 && usuario == usuBus[0].usuario && contrasena == usuBus[0].contrasena ) {
 
         console.log("Enviando Token");
        
             const token = jwt.sign({
+                id:usuBus[0].id,
                 admin: usuBus[0].admin,
                 nombre: usuBus[0].nombre,
                 apellido: usuBus[0].apellido

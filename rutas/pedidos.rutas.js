@@ -1,6 +1,6 @@
 const pedidosServicios = require('../servicios/pedidos.servicios.js');
 const usuariosServicios = require('../servicios/usuarios.servicios.js');
-const {mostrarPedidos, crearPedido, validarDatos,
+const {mostrarPedidos, crearPedido, validarDatos, existePedido,
        editarPedido ,eliminarPedido} = require('../middlewares/pedidos.middleware.js');
 const {enviaToken} = require('../middlewares/usuarios.middleware.js');
 
@@ -18,13 +18,13 @@ module.exports = (app) => {
 
     });
 
-    app.put("/v1/pedidos/",enviaToken, editarPedido, async (req, res) => {
+    app.put("/v1/pedidos/",enviaToken, existePedido, editarPedido, async (req, res) => {
 
         console.log("peticion PUT a : /v1/pedidos/ ");
       
     });
 
-    app.delete("/v1/pedidos/",enviaToken, eliminarPedido, async (req, res) => {
+    app.delete("/v1/pedidos/",enviaToken, existePedido, eliminarPedido, async (req, res) => {
 
         console.log("peticion DELETE a : /v1/pedidos/ ");
 

@@ -1,3 +1,5 @@
+const productosServicios = require('../servicios/productos.servicios.js');
+
 function validarDatos(req, res, next) {
 
     console.log("Validando Datos del Producto");

@@ -17,16 +17,34 @@ module.exports.mostrarPedidos = async (objPedido) => {
     }
 }
 
-module.exports.buscarPedidoPorUsuario = async (objPedido) => {
+module.exports.buscarPedidoPorUsuario = async (id_usuario) => {
 
-
-    if (objPedido) {
+    if (id_usuario) {
 
         query = "SELECT * FROM pedidos WHERE id_usuario = :id_usuario";
 
     const respuesta =
         sequelize.query(query, {
-            replacements: { id_usuario: objPedido.id_usuario },
+            replacements: { id_usuario },
+            type: sequelize.QueryTypes.SELECT
+        });
+
+    return respuesta;
+
+
+    }
+
+}
+
+module.exports.existenciaPedido = async (id_pedido) => {
+
+    if (id_pedido) {
+
+    query = "SELECT * FROM pedidos WHERE id = :id_pedido";
+
+    const respuesta =
+        sequelize.query(query, {
+            replacements: { id_pedido },
             type: sequelize.QueryTypes.SELECT
         });
 
@@ -40,14 +58,15 @@ module.exports.buscarPedidoPorUsuario = async (objPedido) => {
 module.exports.crearPedido = async (objPedido) => {
    
     const fecha_pedido = ahora;
-
-    const {total, id_usuario, productos} = objPedido;
+    const fecha_estado = ahora;
+    
+    const {total, id_usuario} = objPedido;
 
         query = "INSERT INTO pedidos (total, id_usuario, estado, fecha_pedido, fecha_estado) VALUES (:total, :id_usuario, 'pedido', :fecha_pedido, :fecha_estado) ";
 
         const respuesta =
             sequelize.query(query, {
-                replacements: { total, id_usuario, fecha_pedido},
+                replacements: { total, id_usuario, fecha_pedido, fecha_estado},
                 type: sequelize.QueryTypes.INSERT
             });
 

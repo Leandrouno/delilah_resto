@@ -1,16 +1,15 @@
 const pedidosServicios = require('../servicios/pedidos.servicios.js');
+const { jwt, firma } = require("../configuracion/configuracion.js");
 
 async function mostrarPedidos(req, res, next) {
 
     console.log("Validando El tipo de Usuario");
 
-        const { jwt, firma } = require("../configuracion/configuracion.js");
+    const token = req.headers.authorization;
 
-        const token = req.body.token;
+    const verificar = jwt.verify(token, firma)
 
-        const verificar = jwt.verify(token, firma);
-
-        if (verificar.admin == 1) {
+    if (verificar.admin == 1) {
 
             const pedidos = await pedidosServicios.mostrarPedidos(req.body);
 
@@ -19,7 +18,7 @@ async function mostrarPedidos(req, res, next) {
         }
         else {
 
-            const pedidos = await pedidosServicios.buscarPedidoPorUsuario(req.body);
+            const pedidos = await pedidosServicios.buscarPedidoPorUsuario(verificar.id);
 
             res.status(200).json(pedidos);
         }
@@ -38,6 +37,28 @@ function validarDatos(req, res, next) {
 
         res.status(400).json({
             error: `Datos Incompletos !`
+        });
+
+    } else {
+
+        next();
+
+    }
+
+}
+
+async function existePedido(req, res, next) {
+
+    console.log("Validando Existencia del Pedido");
+
+    const id_pedido = req.body.id_pedido
+
+    const existe = await pedidosServicios.existenciaPedido(id_pedido);
+console.log("existe :" ,existe.length)
+    if (existe.length == 0) {
+
+        res.status(400).json({
+            error: `El Pedido No existe!`
         });
 
     } else {
@@ -121,4 +142,4 @@ async function eliminarPedido(req, res, next) {
 
 }
 
-module.exports = { mostrarPedidos, validarDatos, crearPedido ,editarPedido, eliminarPedido};
+module.exports = { mostrarPedidos, validarDatos, crearPedido , existePedido, editarPedido, eliminarPedido};
