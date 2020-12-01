@@ -1,4 +1,4 @@
-const { sequelize } = require("../configuracion/configuracion.js");
+const { sequelize, firma } = require("../configuracion/configuracion.js");
 
 module.exports.buscarUsuario = async (objUsuario) => {
 
@@ -79,22 +79,3 @@ module.exports.eliminarUsuario = async (objUsuario) => {
     }
 
 }
-
-
-module.exports.tokenUsuario = async (objUsuario) => {
-
-    const { usuario, admin, id } = objUsuario;
-
-    if (usuario) {
-
-        const informacion = { usuario: usuario, admin: admin, id: id };
-        const token = jwt.sign(informacion, firma);
-
-        console.log("Envio Token")
-
-        return token;
-
-    }
-
-}
-
