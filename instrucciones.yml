@@ -1,0 +1,569 @@
+openapi: 3.0.0
+info:
+  title: Delilah Resto by Leandrouno
+  description: API para restaurant 
+  contact:
+    email: lmugnolo@gmail.com
+  version: 1.0.0
+externalDocs:
+  description: Github Repository
+  url: https://github.com/Leandrouno/delilah_resto
+servers:
+  - url: http://localhost:3000/v1
+tags:
+  - name: Ingreso
+    description: Ingreso al Sitio
+  - name: Usuarios
+    description: Operaciones sobre Usuarios
+  - name: Productos
+    description: Operaciones sobre Productos
+  - name: Pedidos
+    description: Operaciones sobre Pedidos
+
+paths:
+  /usuarios:
+    post:
+      tags:
+        - Usuarios
+      summary: Crear Usuario
+      description: Crear un usuario en la base de datos
+      operationId: crearUsuario
+      requestBody:
+        description: Usuario creado
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usuarios"
+        required: true
+      security: []
+      responses:
+        200:
+          description: Usuario Creado Correctamente
+        400:
+          description: Error al Crear Usuario
+        409:
+          description: El Usuario ya existe en la base de Datos
+        500:
+        description : Error
+
+    get:
+      tags:
+        - Usuarios
+      summary: Muestra el listado de Usuarios
+      description: Muestra el listado de USuarios, se debe enviar Token
+      operationId: traerInformacionUsuario
+      responses:
+        200:
+          description: Operacion Correcta
+        401:
+         description: Token Invalido
+        404:
+         description: Usuario no Encontrado
+        500:
+        description : Error
+
+    put:
+      tags:
+        - Usuarios
+      summary: Edita un usuario
+      operationId: editarUsuario
+      requestBody:
+        description: Fields to change
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/Usuarios"
+      responses:
+        201:
+          description: Operacion Correcta
+        401:
+         description: Token Invalido
+        404:
+         description: Usuario no Encontrado
+        500:
+        description : Error
+
+    delete:
+      tags:
+        - Usuarios
+      summary: Elimina Usuario
+      responses:
+       201:
+          description: Operacion Correcta
+      401:
+         description: Token Invalido
+      404:
+         description: Usuario no Encontrado
+      500:
+        description : Error
+
+
+  /ingreso:
+    get:
+      tags:
+        - Ingreso
+      security: []
+      summary: Ingreso al Sistema
+      operationId: loginUsuario
+      parameters:
+        - name: usuario
+          in: query
+          description: El usuario para acceder
+          required: true
+          schema:
+            type: string
+        - name: contraseña
+          in: query
+          description: La contraseña para acceder 
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Operacion Correcta
+        400:
+          description: Error en Usuario o Contraseña
+        500:
+        description : Error
+  /productos:
+    get:
+      tags:
+        - Productos
+      summary: Trae el Listado de Productos
+      description: Muestra todos los productos
+      operationId: traerProductos
+      parameters:
+        - name: busqueda
+          in: query
+          description: Busqueda por.
+          schema:
+            type: string
+      responses:
+        200:
+          description: Operacion Correcta
+        404:
+         description: Producto no encontrado
+        500:
+        description : Error
+
+    post:
+      tags:
+        - Productos
+      summary: Agrega Producto
+      description: Agrega producto al sistema
+      operationId: agregarProducto
+      requestBody:
+        description: 
+           required: true
+      responses:
+        200:
+          description:Productos Agregado Correctamente
+        400:
+          description: Error al agregar Producto
+        401:
+           description: Token Invalido
+        500:
+          description : Error
+    put:
+      tags:
+        - Productos
+      summary: Editar un producto
+      description: Edita las especificaciones de un producto
+      parameters:
+        - name: id
+          in : body
+          description: El Id del producto
+          required: true
+          schema:
+            type: string
+      operationId: editarProducto
+      requestBody:
+        description: 
+        content:
+          application/json:
+           required: true
+      responses:
+        200:
+          description: "Producto modificado Correctamente"
+        400:
+          description: Error al editar producto
+        401:
+           description: Token Invalido
+        500:
+          description : Error
+    delete:
+      tags:
+        - Productos
+      summary: Elimina un producto
+      description: Elimina un prodcto mediante el ID
+      parameters:
+        - name: id
+          in : body
+          description: El Id del producto es necesario para eliminarlo
+          required: true
+          schema:
+            type: string
+      operationId: borrarProducto
+      responses:
+        200:
+          description: "Producto eliminado Correctamente"
+        400:
+          description: Error al eliminar producto
+        401:
+           description: Token Invalido
+        500:
+          description : Error
+
+  /pedidos:
+    get:
+      tags:
+        - Pedidos
+      summary: Trae listado de Pedidos
+      description: Trae el listado de todos los Pedidos
+      operationId: traerPedidos
+      responses:
+        200:
+          description: "Operacion Correcta"
+        400:
+          description: "La Operacion no existe"
+        401:
+           description: Token Invalido
+        500:
+          description : Error
+
+    post:
+      tags:
+        - Pedidos
+      summary: Crear un Pedido
+      description: Agrega una nuevo Pedido a la base de datos
+      operationId: agregarPedido
+      requestBody:
+        description: Crear Pedido
+        content:
+          application/json:
+            schema:
+        required: true
+      responses:
+        200:
+          description: "Pedido Creado Correctamente"
+        400:
+          description: "Error al crear Pedido"
+        401:
+           description: Token Invalido
+        500:
+          description : Error
+    put:
+      tags:
+        - Pedidos
+      summary: Editar un Pedido
+      description: Edita un Pedido
+      operationId: editarPedido
+      parameters:
+        - name: id
+          in : body
+          description: El Id del Pedido a Editar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: 
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                pedidoEstado:
+                  type: string
+                  example: entregada
+        required: true
+      responses:
+        200:
+          description: "Pedido Editado Correctamente"
+        400:
+          description: "Error al editar Pedido"
+        401:
+           description: Token Invalido
+        500:
+          description : Error
+    delete:
+      tags:
+        - Pedidos
+      summary: Eliminar un Pedido
+      description: Eliminar un Pedido
+      operationId: eliminarPedido
+      parameters:
+        - name: id
+          in : body
+          description: El Id del pedido a Eliminar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: 
+        required: true
+      responses:
+        200:
+          description: "Pedido Eliminado Correctamente"
+        400:
+          description: "Error al eliminar el Pedido"
+        401:
+           description: Token Invalido
+        500:
+          description : Error
+          
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 100
+        username:
+          type: string
+          example: ghee_dough
+        password:
+          type: string
+          example: MySecretPass123
+        email:
+          type: string
+          example: gheedough@gmail.com
+        delivery_address:
+          type: string
+          example: Fake St. 123
+        full_name:
+          type: string
+          example: Guido Torres
+        phone:
+          type: integer
+          example: 5491122223333
+    UserInfo:
+      type: array
+      items:
+        type: object
+        properties:
+          user_id:
+            type: integer
+            example: 1
+          username:
+            type: string
+            example: ghee_dough
+          full_name:
+            type: string
+            example: Guido Torres
+          email:
+            type: string
+            example: gheedough@gmail.com
+          phone:
+            type: integer
+            example: 5491122223333
+          delivery_address:
+            type: string
+            example: Fake St. 123
+          is_admin:
+            type: boolean
+            example: 0
+          is_disabled:
+            type: boolean
+            example: 0
+    Product:
+      type: object
+      properties:
+        product_id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Avocado Toast
+        price:
+          type: number
+          example: 268.5
+        img_url:
+          type: string
+          example: https://via.placeholder.com/150
+        description:
+          type: string
+          example: A thick, crusty, toastd rye bread toast with an avocado mix on
+            top with spices
+        is_disabled:
+          type: boolean
+          example: 0
+    Products:
+      type: array
+      items:
+        $ref: "#/components/schemas/Product"
+    OrderProduct:
+      type: object
+      properties:
+        order_prod_id:
+          type: integer
+          example: 104
+        order_id:
+          type: integer
+          example: 5
+        product_id:
+          type: integer
+          example: 70
+        product_amount:
+          type: integer
+          example: 70
+        name:
+          type: string
+          example: Avocado Toast
+        price:
+          type: number
+          example: 268.5
+        img_url:
+          type: string
+          example: https://via.placeholder.com/150
+        description:
+          type: string
+          example: A thick, crusty, toastd rye bread toast with an avocado mix on
+            top with spices
+        is_disabled:
+          type: boolean
+          example: 0
+    OrderProducts:
+      type: array
+      items:
+        $ref: "#/components/schemas/OrderProduct"
+    Order:
+      type: object
+      properties:
+        order_id:
+          type: integer
+          example: 1
+        status:
+          type: string
+          example: new
+        date:
+          type: string
+          format: date-time
+          example: "2020-04-10T10:11:12Z"
+        description:
+          type: string
+          example: "1x AvoToast"
+        payment_method:
+          type: string
+          example: cash
+        total:
+          type: integer
+          example: 666
+        user_id:
+          type: integer
+          example: 1
+        username:
+          type: string
+          example: gheedough
+        full_name:
+          type: string
+          example: "Guido Torres"
+        email:
+          type: string
+          example: gheedough@gmail.com
+        phone:
+          type: integer
+          example: 1122223333
+        delivery_address:
+          type: string
+          example: Calle Falsa 123
+        products:
+          $ref: "#/components/schemas/OrderProducts"
+    Orders:
+      type: array
+      items:
+        $ref: "#/components/schemas/Order"
+    NewOrder:
+      type: object
+      properties:
+        payment_method:
+          type: string
+          example: cash
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              product_id:
+                type: integer
+                example: 1
+              amount:
+                type: integer
+                example: 3
+    Token:
+      type: object
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: "An error has ocurred: <error>"
+      required:
+        - error
+    Send:
+      type: string
+      example: "Error message"
+      
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  # Reused Responses
+  responses:
+    UnauthorizedError:
+      description: Invalid Token
+    Disabled:
+      description: Invalid request, user account is disabled
+    NotAdmin:
+      description: Operation forbidden, not an admin
+    NotFound:
+      description: The specified resource was not found
+    Default:
+      description: Unexpected error
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: "#/components/schemas/Send"
+          examples:
+            Token Invalidation:
+              summary: Unauthorized - Invalid Token
+              value: Unauthorized - Invalid Token
+            Disabled Account:
+              summary: Unauthorized - Account is Disabled
+              value: Unauthorized - User account is disabled
+    UnauthorizedAdmin:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: "#/components/schemas/Send"
+          examples:
+            Token Invalidation:
+              summary: Unauthorized - Invalid Token
+              value: Unauthorized - Invalid Token
+            Disabled Account:
+              summary: Unauthorized - Account is Disabled
+              value: Unauthorized - User account is disabled
+            Not Admin:
+              summary: Unauthorized - Not an admin
+              value: Unauthorized - Not an admin
+
+security:
+  - bearerAuth: []
